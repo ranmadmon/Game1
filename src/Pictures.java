@@ -7,7 +7,6 @@ public  class Pictures extends JLabel {
     private int width;
     private int height;
     private ImageIcon imageIcon;
-
     public  Pictures (int x,int y,int width,int height,ImageIcon imageIcon){
         super(imageIcon);
         this.setBounds(x,y,width,height);
@@ -60,13 +59,19 @@ public  class Pictures extends JLabel {
     public void moveDown(){
         this.y+=8;
     }
+    public void moveUpSolider(){
+        this.y-=12;
+    }
+    public void moveDownSolider(){
+        this.y+=12;
+    }
     public void moveLeft(){
         this.x--;
     } public void moveRight(){
         this.x++;
     }
     public void targetStartMoving(MainSence mainSence,boolean goUP){
-        new Thread(()->{
+            new Thread(()->{
             boolean moveUp=goUP;
             while (true){
                 while (moveUp){
@@ -77,7 +82,7 @@ public  class Pictures extends JLabel {
                         moveUp = false;
                     }
                     try {
-                        Thread.sleep(35);
+                        Thread.sleep(32);
                     }catch (InterruptedException e){
                         throw new RuntimeException(e);
                     }
@@ -90,13 +95,14 @@ public  class Pictures extends JLabel {
                         moveUp=true;
                     }
                     try {
-                        Thread.sleep(35);
+                        Thread.sleep(32);
                     }catch (InterruptedException e){
                         throw new RuntimeException(e);
                     }
                 }
             }
         }).start();
+
     }
     public void backToLife(MainSence mainSence,Pictures target,int i){
      Thread thread=new Thread(()->{
@@ -113,8 +119,6 @@ public  class Pictures extends JLabel {
          mainSence.add(target);
         });
      thread.start();
-
         }
-
     }
 
